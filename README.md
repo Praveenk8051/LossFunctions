@@ -51,7 +51,7 @@ $$MSE = \frac{1}{n}\sum_{n}^{i=1}(Y_i-\hat{Y_i})^2$$
 $$L(y,\hat{y}) = \frac{1}{N}\sum_{N}^{i=0}(log(y_i+1)-log(\hat{y_i}+1))^2$$
 
 <p align="center">
-<img src="https://latex.codecogs.com/svg.latex?L(y,\hat{y}) = \frac{1}{N}\sum_{N}^{i=0}(log(y_i+1)-log(\hat{y_i}+1))^2" />
+<img src="https://latex.codecogs.com/png.latex?L(y,\hat{y})%20=%20\frac{1}{N}\sum_{N}^{i=0}(log(y_i+1)-log(\hat{y_i}+1))^2" />
 </p>
 
 
