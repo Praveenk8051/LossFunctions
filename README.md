@@ -5,7 +5,7 @@ The aim of this repo is to have all the loss functions at one place for referenc
 
 | Contents|
 | ---------------------- |
-| 1. [**Mean Square Error**]() |
+| 1. [**Mean Square Error**](#mse) |
 | 2. [**Mean Square Lograthmic Error**]() |
 | 3. [**Mean Absolute Error**]() |
 | 4. [**Binary Classification Loss**]() |
@@ -31,3 +31,7 @@ The aim of this repo is to have all the loss functions at one place for referenc
 | 24. [**Label Smoothing Loss**]() |
 | 25. [**Face loss function**]() |
 | 25. [**Softmax**]() |
+
+
+
+## **Mean Square Error** ##
