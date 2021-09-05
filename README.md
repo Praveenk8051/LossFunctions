@@ -42,13 +42,15 @@ The aim of this repo is to have all the loss functions at one place for referenc
 * It also gives more weight to larger differences. It’s called the mean squared error as you’re finding the average of a set of errors. 
 * The lower the MSE, the better the forecast.
 
-$$MSE = \frac{1}{n}\sum_{n}^{i=1}(Y_i-\hat{Y_i})^2$$
+
+<p align="center">
+<img src="https://latex.codecogs.com/png.latex?MSE%20=%20\frac{1}{n}\sum_{n}^{i=1}(Y_i-\hat{Y_i})^2" />
+</p>
 
 ## **Mean Square Lograthmic Error** ##
 * MSLE will treat small differences between small true and predicted values approximately the same as big differences between large true and predicted values
 * Use MSLE when doing regression, believing that your target, conditioned on the input, is normally distributed, and you don’t want large errors to be significantly more penalized than small ones, in those cases where the range of the target value is large.
 
-$$L(y,\hat{y}) = \frac{1}{N}\sum_{N}^{i=0}(log(y_i+1)-log(\hat{y_i}+1))^2$$
 
 <p align="center">
 <img src="https://latex.codecogs.com/png.latex?L(y,\hat{y})%20=%20\frac{1}{N}\sum_{N}^{i=0}(log(y_i+1)-log(\hat{y_i}+1))^2" />
@@ -59,8 +61,9 @@ $$L(y,\hat{y}) = \frac{1}{N}\sum_{N}^{i=0}(log(y_i+1)-log(\hat{y_i}+1))^2$$
 ## **Mean Absolute Error** ##
 * Absolute Error is the amount of error in your measurements.
 * The Mean Absolute Error(MAE) is the average of all absolute errors.
-$$MAE = \frac{1}{n}\sum_{n}^{i=1}|Y_i-\hat{Y_i}|$$
 
+<p align="center">
+<img src="https://latex.codecogs.com/png.latex?MAE%20=%20\frac{1}{n}\sum_{n}^{i=1}|Y_i-\hat{Y_i}|" />
+</p>
 
 ## **Mean Percentage Absolute Error** ##
-![equation](http://latex.codecogs.com/svg.latex?" + urllib.parse.quote(s, safe='') + ")"
