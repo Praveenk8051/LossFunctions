@@ -67,3 +67,18 @@ The aim of this repo is to have all the loss functions at one place for referenc
 </p>
 
 ## **Mean Percentage Absolute Error** ##
+* The mean absolute percentage error (MAPE) is a measure of how accurate a forecast system is. 
+* It measures this accuracy as a percentage,
+
+<p align="center">
+<img src="https://latex.codecogs.com/png.latex?M%20=%20\frac{1}{n}\sum_{n}^{i=1}\frac{A_t-F_t}{A_t}" />
+</p>
+
+#### M	=	mean absolute percentage error
+#### n	=	number of times the summation iteration happens
+#### $A_t$	=	actual value
+#### $F_t$	=	forecast value
+
+
+## **Binary Classification Loss** ##
+
