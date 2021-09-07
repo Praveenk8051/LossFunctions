@@ -9,29 +9,28 @@ The aim of this repo is to have all the loss functions at one place for referenc
 | 2. [**Mean Square Lograthmic Error**](#mean-square-lograthmic-error) |
 | 3. [**Mean Absolute Error**](#mean-absolute-error) |
 | 4. [**Mean Absolute Percentage Error**](#mean-absolute-percentage-error) |
-| 5. [**Binary Classification Loss**]() |
-| 6. [**Binary Entropy Loss**]() |
+| 5. [**Binary Cross Entropy Loss/Log Loss**](#binary-cross-entropy) |
+| 6. [**KL Divergence**](#kl-divergence) |
 | 7. [**Multi-Class Classification Loss**]() |
 | 8. [**Sparse multi-class loss function**]() |
 | 9. [**Multi Class Cross Entropy Loss**]() |
-| 10. [**KL Divergence**]() |
-| 11. [**Logistic loss**]() |
-| 12. [**Huber loss**]() |
-| 13. [**Hinge loss**]() |
-| 14. [**Squared hinge loss**]() |
-| 15. [**Contrastive loss & Triplet loss**]() |
-| 16. [**Center loss**]() |
-| 17. [**Exponential loss**]() |
-| 18. [**Taylor Cross Entropy**]() |
-| 19. [**Symmetric Cross Entropy**]() |
-| 20. [**Bi-Tempered Logistic Loss**]() |
-| 21. [**Bi-Tempered Loss**]() |
-| 22. [**Class Balanced Loss**]() |
-| 23. [**Focal Cosign Loss**]() |
-| 24. [**Focal Loss**]() |
-| 25. [**Label Smoothing Loss**]() |
-| 26. [**Face loss function**]() |
-| 27. [**Softmax**]() |
+| 10. [**Logistic loss**]() |
+| 11. [**Huber loss**]() |
+| 12. [**Hinge loss**]() |
+| 13. [**Squared hinge loss**]() |
+| 14. [**Contrastive loss & Triplet loss**]() |
+| 15. [**Center loss**]() |
+| 16. [**Exponential loss**]() |
+| 17. [**Taylor Cross Entropy**]() |
+| 18. [**Symmetric Cross Entropy**]() |
+| 19. [**Bi-Tempered Logistic Loss**]() |
+| 20. [**Bi-Tempered Loss**]() |
+| 21. [**Class Balanced Loss**]() |
+| 22. [**Focal Cosign Loss**]() |
+| 23. [**Focal Loss**]() |
+| 24. [**Label Smoothing Loss**]() |
+| 25. [**Face loss function**]() |
+| 26. [**Softmax**]() |
 
 
 
@@ -74,11 +73,27 @@ The aim of this repo is to have all the loss functions at one place for referenc
 <img src="https://latex.codecogs.com/png.latex?M%20=%20\frac{1}{n}\sum_{n}^{i=1}\frac{A_t-F_t}{A_t}" />
 </p>
 
-#### M	=	mean absolute percentage error
-#### n	=	number of times the summation iteration happens
-#### $A_t$	=	actual value
-#### $F_t$	=	forecast value
+M=mean absolute percentage error&emsp;&emsp; n=number of times the summation iteration
+
+$A_t$=actual value&emsp;&emsp;$F_t$	=	forecast value
 
 
-## **Binary Classification Loss** ##
+## **Binary Cross-Entropy Loss** ##
+We will have 2 classes, positive and negative. In order to predict how good our predicted probabilities, we should return high values for bad predicitions and low values for good predictions. The formula for Binary Cross Entropy/Log loss can be given as below. 
+
+<p align="center">
+<img src="https://latex.codecogs.com/png.latex?H_p(q)=-\frac{1}{N}\sum_{i=1}^{N}y_i\cdot%20log(p(y_i))+(1-y_i)\cdot%20log(1-p(y_i))" />
+</p>
+
+Negative log helps in penalizing the postive loss if it is too low.
+
+## **KL Divergence** ##
+The Kullback-Leibler Divergence,or “KL Divergence” for short, is a measure of dissimilarity between two distributions.
+
+This means that, the closer p(y) gets to q(y), the lower the divergence. So, we need to find a good p(y) to use. It looks for the best possible p(y), which is the one that minimizes the cross-entropy.
+<p align="center">
+<img src="https://latex.codecogs.com/png.latex?D_{KL}(q||p)=H_p(q)-H(q)=\sum_{c=1}^{C}q(y_c)\cdot%20[log(q(y_c))-log(p(y_c))]
+" />
+</p>
+
 
