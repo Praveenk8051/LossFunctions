@@ -1,6 +1,6 @@
 # LossFunctions
 
-The aim of this repo is to have all the loss functions at one place for reference. The loss functions provides small explanation followed by mathematical formula
+The aim of this repository is to have all the loss functions at one place for reference. The loss functions provides small explanation followed by mathematical formula.
 
 
 | Contents|
