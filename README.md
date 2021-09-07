@@ -92,8 +92,7 @@ The Kullback-Leibler Divergence,or “KL Divergence” for short, is a measure o
 
 This means that, the closer p(y) gets to q(y), the lower the divergence. So, we need to find a good p(y) to use. It looks for the best possible p(y), which is the one that minimizes the cross-entropy.
 <p align="center">
-<img src="https://latex.codecogs.com/png.latex?D_{KL}(q||p)=H_p(q)-H(q)=\sum_{c=1}^{C}q(y_c)\cdot%20[log(q(y_c))-log(p(y_c))]
-" />
+<img src="https://latex.codecogs.com/png.latex?D_{KL}(q||p)=H_p(q)-H(q)=\sum_{c=1}^{C}q(y_c)\cdot%20[log(q(y_c))-log(p(y_c))]" />
 </p>
 
 
