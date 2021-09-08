@@ -11,9 +11,9 @@ The aim of this repository is to have all the loss functions at one place for re
 | 4. [**Mean Absolute Percentage Error**](#mean-absolute-percentage-error) |
 | 5. [**Binary Cross Entropy Loss/Log Loss**](#binary-cross-entropy) |
 | 6. [**KL Divergence**](#kl-divergence) |
-| 7. [**Multi-Class Classification Loss**]() |
-| 8. [**Sparse multi-class loss function**]() |
-| 9. [**Multi Class Cross Entropy Loss**]() |
+| 7. [**Cross-Entropy Loss**](#cross-entropy-loss) |
+| 8. [**Sparse multi-class loss function**](#sparse-multi-class-loss-function) |
+| 9. [**Categorical Cross Entropy Loss**](#categorical-cross-entropy-loss) |
 | 10. [**Logistic loss**]() |
 | 11. [**Huber loss**]() |
 | 12. [**Hinge loss**]() |
@@ -30,7 +30,7 @@ The aim of this repository is to have all the loss functions at one place for re
 | 23. [**Focal Loss**]() |
 | 24. [**Label Smoothing Loss**]() |
 | 25. [**Face loss function**]() |
-| 26. [**Softmax**]() |
+
 
 
 
@@ -46,7 +46,7 @@ The aim of this repository is to have all the loss functions at one place for re
 <img src="https://latex.codecogs.com/png.latex?MSE%20=%20\frac{1}{n}\sum_{n}^{i=1}(Y_i-\hat{Y_i})^2" />
 </p>
 
-## **Mean Square Lograthmic Error** ##
+## **Mean Square Logarithmic Error** ##
 * MSLE will treat small differences between small true and predicted values approximately the same as big differences between large true and predicted values
 * Use MSLE when doing regression, believing that your target, conditioned on the input, is normally distributed, and you don’t want large errors to be significantly more penalized than small ones, in those cases where the range of the target value is large.
 
@@ -75,7 +75,7 @@ The aim of this repository is to have all the loss functions at one place for re
 
 M=mean absolute percentage error&emsp;&emsp; n=number of times the summation iteration
 
-$A_t$=actual value&emsp;&emsp;$F_t$	=	forecast value
+```At```=actual value&emsp;&emsp;```Ft```	=	forecast value
 
 
 ## **Binary Cross-Entropy Loss** ##
@@ -96,3 +96,42 @@ This means that, the closer p(y) gets to q(y), the lower the divergence. So, we 
 </p>
 
 
+## **Cross-Entropy Loss** ##
+The cross entropy loss can be given as below.
+
+<p align="center">
+<img src="https://latex.codecogs.com/png.latex?CE=-\sum_{C}^{i}t_ilog(s_i)" />
+</p>
+
+Where ```ti``` and ```si``` are the groundtruth and the CNN score for each class ```i``` in ```C```. As usually an activation function (Sigmoid / Softmax) is applied to the scores before the CE Loss computation, we write ```f(si)``` to refer to the activations.
+
+
+## **Sparse multi-class loss function** ##
+The only difference between sparse categorical cross entropy and categorical cross entropy is the format of true labels. When we have a single-label, multi-class classification problem, the labels are mutually exclusive for each data, meaning each data entry can only belong to one class. Then we can represent y_true using one-hot embeddings.
+
+For example, y_true with 3 samples, each belongs to class 2, 0, and 2.
+
+<p align="center">
+<img src="https://latex.codecogs.com/png.latex?y_{true}%20=%20[[0,0,1],%20\\\textrm{\quad\quad\quad\quad\quad%20}1,0,0],%20\\\textrm{\quad\quad\quad\quad\quad%20}%200,0,1]]" />
+</p>
+
+Will become:
+<p align="center">
+<img src="https://latex.codecogs.com/png.latex?y_{true-one-hot}%20=%20[2,%200,%202]" />
+</p>
+
+
+## **Categorical Cross-Entropy loss** ##
+Also called Softmax Loss. It is a Softmax activation plus a Cross-Entropy loss. If we use this loss, we will train a CNN to output a probability over the ***C*** classes for each image. It is used for multi-class classification.
+
+![image](/images/categorical_loss.png)
+
+<p align="center">
+<img src="https://latex.codecogs.com/png.latex?f(s)_i=\frac{e^s_i}{\sum_{C}^{j}e^s_j}%20\quad%20CE=-\sum_{C}^{i}t_ilog(f(s)_i)" />
+</p>
+
+
+In the specific (and usual) case of Multi-Class classification the labels are one-hot, so only the positive class ***Cp*** keeps its term in the loss. There is only one element of the Target vector t which is not zero  ***ti=tp***. So discarding the elements of the summation which are zero due to target labels, we can write:
+<p align="center">
+<img src="https://latex.codecogs.com/png.latex?CE=-log\left%20(%20\frac{e^{s_p}}{\sum_{C}^{j}e^{s_j}}%20\right%20)" />
+</p>
