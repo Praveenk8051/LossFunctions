@@ -48,7 +48,8 @@ The aim of this repository is to have all the loss functions at one place for re
 
 ## **Mean Square Logarithmic Error** ##
 * MSLE will treat small differences between small true and predicted values approximately the same as big differences between large true and predicted values
-* Use MSLE when doing regression, believing that your target, conditioned on the input, is normally distributed, and you don’t want large errors to be significantly more penalized than small ones, in those cases where the range of the target value is large.
+* Use MSLE when doing regression, believing that your target, conditioned on the input, is normally distributed 
+* You don’t want large errors to be significantly more penalized than small ones, in those cases where the range of the target value is large.
 
 
 <p align="center">
