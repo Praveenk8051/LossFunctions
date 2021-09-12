@@ -243,3 +243,6 @@ Another scalar ```lambda``` is used to balance the two loss functions. The total
 <img src="https://latex.codecogs.com/png.latex?\mathcal{L}%20=%20\mathcal{L}_S%20+%20\lambda%20\mathcal{L}_C" />
 </p>
 
+
+
+Last Updated: Sep-12
