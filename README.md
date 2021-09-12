@@ -19,7 +19,7 @@ The aim of this repository is to have all the loss functions at one place for re
 | 12. [**Squared hinge loss**](squared-hinge-loss) |
 | 13. [**Pairwise Ranking Loss**](pairwise-ranking) |
 | 14. [**Triplet loss**](triplet-loss) |
-| 15. [**Different Ranking Losses**](different-ranking-losses) |
+| 15. [**Ranking Losses with Different Names**](ranking-losses-with-different-names) |
 | 16. [**Center loss**](center-loss) |
 | 17. [**Exponential loss**](exponential-loss) |
 | 17. [**Taylor Cross Entropy**](taylor-cross-entropy-loss) |
@@ -181,12 +181,20 @@ Suppose that you need to draw a very fine decision boundary. In that case, you w
 In this setup positive and negative pairs of training data points are used. Positive pairs are composed by an anchor sample ```xa``` and a positive sample ```xp```, which is similar to ```xa``` in the metric we aim to learn, and negative pairs composed by an anchor sample ```xa``` and a negative sample ```xn```, which is dissimilar to ```xa``` in that metric.
 
 Pairwise Ranking Loss forces representations to have ```0``` distance for positive pairs, and a distance greater than a margin for negative pairs. Being ```ra```,```rp``` and ```rn``` the samples representations and ```d``` a distance function, we can write:
-equation
+
+
+<img src="https://latex.codecogs.com/png.latex?L=\left\{\begin{matrix}%20d(r_a,r_p)%20&%20if%20\quad%20PositivePair\\%20max(0,m-d(r_a,r_n))%20&%20if%20\quad%20NegativePair%20\end{matrix}\right." />
+</p>
+
+
 
 For negative pairs, the loss will be ```0``` when the distance between the representations of the two pair elements is greater than the margin ```m```. But when that distance is not bigger than ```m```, the loss will be positive, and net parameters will be updated to produce more distant representation for those two elements. The loss value will be at most ```m```, when the distance between ```ra``` and ```rn``` is ```0```. The function of the margin is that, when the representations produced for a negative pair are distant enough, no efforts are wasted on enlarging that distance, so further training can focus on more difficult pairs.
 
 If ```r0``` and ```r1``` are the pair elements representations, y is a binary flag equal to ```0``` for a negative pair and to ```1``` for a positive pair and the distance d is the euclidian distance, we can equivalently write:
-equation
+
+<img src="https://latex.codecogs.com/png.latex?L(r_0,r_1,y)=y\left%20\|%20r_0-r_1%20\right%20\|+(1-y)max(0,m-\left%20\|%20r_0-r_1%20\right%20\|)" />
+</p>
+
 
 
 
@@ -196,7 +204,9 @@ equation
 ## **Triplet loss** ##
 This setup outperforms the former by using triplets of training data samples, instead of pairs. The triplets are formed by an anchor sample ```xa```, a positive sample ```xp``` and a negative sample ```xn```. The objective is that the distance between the anchor sample and the negative sample representations ```d(ra,rn)``` is greater (and bigger than a margin ```m```) than the distance between the anchor and positive representations ```d(ra,rp)```.
 
-equation
+<img src="https://latex.codecogs.com/png.latex?L(r_a,r_p,r_n)=max(0,m+d(r_a,r_p)-d(r_a,r_n))" />
+</p>
+
 
 The 3 situation to analyze
 * Easy Triplets: ```d(ra,rn)>d(ra,rp)+m```. The negative sample is already sufficiently distant to the anchor sample respect to the positive sample in the embedding space. The loss is ```0``` and the net parameters are not updated.
@@ -204,3 +214,32 @@ The 3 situation to analyze
 * Hard Triplets: ```d(ra,rn)<d(ra,rp)```. The negative sample is closer to the anchor than the positive. The loss is positive (and greater than ```m```).
 
 * Semi-Hard Triplets: ```d(ra,rp)<d(ra,rn)<d(ra,rp)+m```. The negative sample is more distant to the anchor than the positive, but the distance is not greater than the margin, so the loss is still positive (and smaller than ```m```).
+
+## **Ranking Losses with Different Names** ##
+
+* Ranking loss: This name comes from the information retrieval field, where we want to train models to rank items in an specific order.
+
+* Margin Loss: This name comes from the fact that these losses use a margin to compare samples representations distances.
+
+* Contrastive Loss: Contrastive refers to the fact that these losses are computed contrasting two or more data points representations. This name is often used for Pairwise Ranking Loss, but I’ve never seen using it in a setup with triplets.
+
+* Triplet Loss: Often used as loss name when triplet training pairs are employed.
+
+* Hinge loss: Also known as max-margin objective. It’s used for training SVMs for classification. It has a similar formulation in the sense that it optimizes until a margin. That’s why this name is sometimes used for Ranking Losses.
+
+## **Center loss**
+Helps in discriminating between features. Minimizing the intra-class variations while keeping the features of different classes separable is the key. To this end, we propose the center loss function
+
+<img src="https://latex.codecogs.com/png.latex?\mathcal{L}_C=\frac{1}{2}%20\sum_{i=1}^{m}\left%20\|%20x_i-c_y_i%20\right%20\|^{2}_2" />
+</p>
+
+For this loss, you define a per class center which serves as the centroid of embeddings corresponding to that class. The gradient update is done over the mini-batch and a hyperparameter ```alpha``` controls the learning rates of the centers. The update is given by
+
+<img src="https://latex.codecogs.com/png.latex?c^{t+1}_j=c^{t}_j-\alpha%20\cdot%20\Delta%20c^{t}_j" />
+</p>
+
+Another scalar ```lambda``` is used to balance the two loss functions. The total loss
+
+<img src="https://latex.codecogs.com/png.latex?\mathcal{L}%20=%20\mathcal{L}_S%20+%20\lambda%20\mathcal{L}_C" />
+</p>
+
