@@ -11,15 +11,17 @@ The aim of this repository is to have all the loss functions at one place for re
 | 4. [**Mean Absolute Percentage Error**](#mean-absolute-percentage-error) |
 | 5. [**Binary Cross Entropy Loss/Log Loss**](#binary-cross-entropy) |
 | 6. [**KL Divergence**](#kl-divergence) |
-| 7. [**Cross-Entropy Loss**](#cross-entropy-loss) |
+| 7. [**Cross-Entropy Loss/Logistic Loss/Multinomial Logistic Loss**](#cross-entropy-loss) |
 | 8. [**Sparse multi-class loss function**](#sparse-multi-class-loss-function) |
 | 9. [**Categorical Cross Entropy Loss**](#categorical-cross-entropy-loss) |
-| 11. [**Huber loss**](huber-loss) |
-| 12. [**Hinge loss**](hinge-loss) |
-| 13. [**Squared hinge loss**](squared-hinge-loss) |
-| 14. [**Contrastive loss & Triplet loss**](contrastive-triplet-loss) |
-| 15. [**Center loss**](center-loss) |
-| 16. [**Exponential loss**](exponential-loss) |
+| 10. [**Huber loss**](huber-loss) |
+| 11. [**Hinge loss**](hinge-loss) |
+| 12. [**Squared hinge loss**](squared-hinge-loss) |
+| 13. [**Pairwise Ranking Loss**](pairwise-ranking) |
+| 14. [**Triplet loss**](triplet-loss) |
+| 15. [**Different Ranking Losses**](different-ranking-losses) |
+| 16. [**Center loss**](center-loss) |
+| 17. [**Exponential loss**](exponential-loss) |
 | 17. [**Taylor Cross Entropy**](taylor-cross-entropy-loss) |
 | 18. [**Symmetric Cross Entropy**](symmetric-cross-entropy) |
 | 19. [**Bi-Tempered Logistic Loss**](bi-tempered-logistic-loss) |
@@ -175,4 +177,30 @@ Suppose that you need to draw a very fine decision boundary. In that case, you w
 
 
 
-## **Contrastive loss & Triplet loss** ##
+## **Pairwise Ranking loss** ##
+In this setup positive and negative pairs of training data points are used. Positive pairs are composed by an anchor sample ```xa``` and a positive sample ```xp```, which is similar to ```xa``` in the metric we aim to learn, and negative pairs composed by an anchor sample ```xa``` and a negative sample ```xn```, which is dissimilar to ```xa``` in that metric.
+
+Pairwise Ranking Loss forces representations to have ```0``` distance for positive pairs, and a distance greater than a margin for negative pairs. Being ```ra```,```rp``` and ```rn``` the samples representations and ```d``` a distance function, we can write:
+equation
+
+For negative pairs, the loss will be ```0``` when the distance between the representations of the two pair elements is greater than the margin ```m```. But when that distance is not bigger than ```m```, the loss will be positive, and net parameters will be updated to produce more distant representation for those two elements. The loss value will be at most ```m```, when the distance between ```ra``` and ```rn``` is ```0```. The function of the margin is that, when the representations produced for a negative pair are distant enough, no efforts are wasted on enlarging that distance, so further training can focus on more difficult pairs.
+
+If ```r0``` and ```r1``` are the pair elements representations, y is a binary flag equal to ```0``` for a negative pair and to ```1``` for a positive pair and the distance d is the euclidian distance, we can equivalently write:
+equation
+
+
+
+
+
+
+## **Triplet loss** ##
+This setup outperforms the former by using triplets of training data samples, instead of pairs. The triplets are formed by an anchor sample ```xa```, a positive sample ```xp``` and a negative sample ```xn```. The objective is that the distance between the anchor sample and the negative sample representations ```d(ra,rn)``` is greater (and bigger than a margin ```m```) than the distance between the anchor and positive representations ```d(ra,rp)```.
+
+equation
+
+The 3 situation to analyze
+* Easy Triplets: ```d(ra,rn)>d(ra,rp)+m```. The negative sample is already sufficiently distant to the anchor sample respect to the positive sample in the embedding space. The loss is ```0``` and the net parameters are not updated.
+ 
+* Hard Triplets: ```d(ra,rn)<d(ra,rp)```. The negative sample is closer to the anchor than the positive. The loss is positive (and greater than ```m```).
+
+* Semi-Hard Triplets: ```d(ra,rp)<d(ra,rn)<d(ra,rp)+m```. The negative sample is more distant to the anchor than the positive, but the distance is not greater than the margin, so the loss is still positive (and smaller than ```m```).
