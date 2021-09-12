@@ -135,7 +135,6 @@ In the specific (and usual) case of Multi-Class classification the labels are on
 <p align="center">
 <img src="https://latex.codecogs.com/png.latex?CE=-log\left%20(%20\frac{e^{s_p}}{\sum_{C}^{j}e^{s_j}}%20\right%20)" />
 </p>
-<<<<<<< HEAD
 
 
 
@@ -151,12 +150,29 @@ The following figure shows the change in Huber loss for different values of the 
 ![image](/images/huber_loss.png)
 
 ## **Hinge Loss** ##
+The x-axis represents the distance from the boundary of any single instance, and the y-axis represents the loss size, or penalty, that the function will incur depending on its distance.
+
 
 ![image](/images/hinge_loss.png)
 
+Hinge loss is actually quite simple to compute. The formula for hinge loss is given by the following:
+
+<img src="https://latex.codecogs.com/png.latex?l=max(0,1-y^i(x^i-b))" />
+</p>
+
+
+With l referring to the loss of any given instance, ```y[i]``` and ```x[i]``` referring to the ith instance in the training set and b referring to the bias term
+<img src="https://latex.codecogs.com/png.latex?l=\left\{\begin{matrix}%200%20&%20\forall%20\quad%20y\cdot(w%20\cdot%20x)%20\geq%201\\%201-y\cdot(w%20\cdot%20x)%20%20&%20otherwise%20\end{matrix}\right." />
+</p>
+
 ## **Squared Hinge Loss** ##
+Suppose that you need to draw a very fine decision boundary. In that case, you wish to punish larger errors more significantly than smaller errors. Squared hinge loss may then be what you are looking for, especially when you already considered the hinge loss function for your machine learning problem.
+
+![image](/images/squared_hinge_loss.png)
+
+<img src="https://latex.codecogs.com/png.latex?L(y,\hat{y})=\sum_{i=0}^{N}(max(0,1-y_i%20\cdot%20\hat{y_i})^2)" />
+</p>
+
 
 
 ## **Contrastive loss & Triplet loss** ##
-=======
->>>>>>> 0228b46bab7458b0a5d8db222781a0c77dfc2144
