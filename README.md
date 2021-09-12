@@ -47,7 +47,8 @@ The aim of this repository is to have all the loss functions at one place for re
 
 ## **Mean Square Logarithmic Error** ##
 * MSLE will treat small differences between small true and predicted values approximately the same as big differences between large true and predicted values
-* Use MSLE when doing regression, believing that your target, conditioned on the input, is normally distributed, and you don’t want large errors to be significantly more penalized than small ones, in those cases where the range of the target value is large.
+* Use MSLE when doing regression, believing that your target, conditioned on the input, is normally distributed 
+* You don’t want large errors to be significantly more penalized than small ones, in those cases where the range of the target value is large.
 
 
 <p align="center">
@@ -134,6 +135,7 @@ In the specific (and usual) case of Multi-Class classification the labels are on
 <p align="center">
 <img src="https://latex.codecogs.com/png.latex?CE=-log\left%20(%20\frac{e^{s_p}}{\sum_{C}^{j}e^{s_j}}%20\right%20)" />
 </p>
+<<<<<<< HEAD
 
 
 
@@ -156,3 +158,5 @@ The following figure shows the change in Huber loss for different values of the 
 
 
 ## **Contrastive loss & Triplet loss** ##
+=======
+>>>>>>> 0228b46bab7458b0a5d8db222781a0c77dfc2144
