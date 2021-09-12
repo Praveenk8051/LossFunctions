@@ -14,22 +14,21 @@ The aim of this repository is to have all the loss functions at one place for re
 | 7. [**Cross-Entropy Loss**](#cross-entropy-loss) |
 | 8. [**Sparse multi-class loss function**](#sparse-multi-class-loss-function) |
 | 9. [**Categorical Cross Entropy Loss**](#categorical-cross-entropy-loss) |
-| 10. [**Logistic loss**]() |
-| 11. [**Huber loss**]() |
-| 12. [**Hinge loss**]() |
-| 13. [**Squared hinge loss**]() |
-| 14. [**Contrastive loss & Triplet loss**]() |
-| 15. [**Center loss**]() |
-| 16. [**Exponential loss**]() |
-| 17. [**Taylor Cross Entropy**]() |
-| 18. [**Symmetric Cross Entropy**]() |
-| 19. [**Bi-Tempered Logistic Loss**]() |
-| 20. [**Bi-Tempered Loss**]() |
-| 21. [**Class Balanced Loss**]() |
-| 22. [**Focal Cosign Loss**]() |
-| 23. [**Focal Loss**]() |
-| 24. [**Label Smoothing Loss**]() |
-| 25. [**Face loss function**]() |
+| 11. [**Huber loss**](huber-loss) |
+| 12. [**Hinge loss**](hinge-loss) |
+| 13. [**Squared hinge loss**](squared-hinge-loss) |
+| 14. [**Contrastive loss & Triplet loss**](contrastive-triplet-loss) |
+| 15. [**Center loss**](center-loss) |
+| 16. [**Exponential loss**](exponential-loss) |
+| 17. [**Taylor Cross Entropy**](taylor-cross-entropy-loss) |
+| 18. [**Symmetric Cross Entropy**](symmetric-cross-entropy) |
+| 19. [**Bi-Tempered Logistic Loss**](bi-tempered-logistic-loss) |
+| 20. [**Bi-Tempered Loss**](bi-tempered-loss) |
+| 21. [**Class Balanced Loss**](class-balanced-loss) |
+| 22. [**Focal Cosign Loss**](focal-cosign-loss) |
+| 23. [**Focal Loss**](focal-loss) |
+| 24. [**Label Smoothing Loss**](label-smoothing-loss) |
+| 25. [**Face loss function**](face-loss-function) |
 
 
 
@@ -135,3 +134,25 @@ In the specific (and usual) case of Multi-Class classification the labels are on
 <p align="center">
 <img src="https://latex.codecogs.com/png.latex?CE=-log\left%20(%20\frac{e^{s_p}}{\sum_{C}^{j}e^{s_j}}%20\right%20)" />
 </p>
+
+
+
+## **Huber Loss** ##
+Huber loss is a superb combination of ***linear*** as well as ***quadratic*** scoring methods. It has an additional hyperparameter ***delta***. Loss is linear for values above delta and quadratic below delta. This parameter is tunable according to your data, which makes the Huber loss special.
+
+<p align="center">
+<img src="https://latex.codecogs.com/png.latex?l(y_i,\hat{y_i})%20=%20\left\{\begin{matrix}%20(y_i,\hat{y_i})%20&%20\forall%20\left%20|y_i-\hat{y_i}%20%20\right%20|\leq%20\delta\\%202\delta%20|y_i-\hat{y_i}|-\delta^{2}&%20otherwise%20\end{matrix}\right." />
+</p>
+
+The following figure shows the change in Huber loss for different values of the ***delta*** against error.
+
+![image](/images/huber_loss.png)
+
+## **Hinge Loss** ##
+
+![image](/images/hinge_loss.png)
+
+## **Squared Hinge Loss** ##
+
+
+## **Contrastive loss & Triplet loss** ##
