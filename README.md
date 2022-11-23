@@ -34,7 +34,6 @@ The aim of this repository is to have all the loss functions at one place for re
 
 
 
-
 ## **Mean Square Error** ##
 * The mean squared error (MSE) tells you how close a regression line is to a set of points. 
 * It does this by taking the distances from the points to the regression line (these distances are the “errors”) and squaring them. 
